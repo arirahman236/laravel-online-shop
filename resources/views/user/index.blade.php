@@ -29,6 +29,9 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container">
+
+            {{-- menambah logo --}}
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{asset('images/logo/logo.png')}}" width="50px" height="50px"></a>
             <a class="navbar-brand js-scroll-trigger" href="#page-top">{{ Custom::getShopData('name') }}</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -79,9 +82,10 @@
                         berbagai macam produk elektronik baru maupun bekas</p>
                     <p class="text-white-75 font-weight-light mb-5">Kami juga menyediakan layanan service produk
                         elektronis mulai dari TV, monitor, komputer, kulkas dan lain-lain</p>
-                    <a class="btn btn-primary btn-xl js-scroll-trigger" href="{{route('user.products.index')}}"><i
+                    {{-- mengubah tampilan button --}}
+                    <a class="btn btn-light btn-xl js-scroll-trigger" href="{{route('user.products.index')}}"><i
                             class="fas fa-shopping-cart"></i> {{__('Products')}}</a>
-                    <a class="btn btn-primary btn-xl js-scroll-trigger ml-3" href="{{route('services.index')}}"><i
+                    <a class="btn btn-light btn-xl js-scroll-trigger ml-3" href="{{route('services.index')}}"><i
                             class="fas fa-tools"></i> {{__('Service')}}</a>
                 </div>
             </div>
@@ -103,45 +107,6 @@
             </div>
         </div>
     </section>
-    <!-- Services-->
-    <section class="page-section" id="services">
-        <div class="container">
-            <h2 class="text-center mt-0">Tentang {{ Custom::getShopData('name') }}</h2>
-            <hr class="divider my-4" />
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <i class="fas fa-4x fa-shipping-fast text-primary mb-4"></i>
-                        <h3 class="h4 mb-2">Pelayanan Cepat</h3>
-                        <p class="text-muted mb-0">Pelanggan adalah prioritas nomor satu kami.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <i class="fas fa-4x fa-gem text-primary mb-4"></i>
-                        <h3 class="h4 mb-2">Kualitas Terjaga</h3>
-                        <p class="text-muted mb-0">Produk kami bervariasi dari berbagai merk terkenal dan sudah terjaga
-                            kondisinya.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <i class="fas fa-4x fa-shield-alt text-primary mb-4"></i>
-                        <h3 class="h4 mb-2">Bergaransi</h3>
-                        <p class="text-muted mb-0">Kami memberikan garansi untuk setiap pemesanan dan perbaikan.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-                        <i class="fas fa-4x fa-lock text-primary mb-4"></i>
-                        <h3 class="h4 mb-2">Aman dan Terpercaya</h3>
-                        <p class="text-muted mb-0">Web ini sudah terverifikasi dan toko kami sudah bersertifikat.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Products-->
     <div class="bbb_viewed">
         <div class="container">
@@ -191,33 +156,72 @@
         </div>
     </div>
 
+    <!-- Services-->
+    <section class="page-section" id="services">
+        <div class="container">
+            <h2 class="text-center mt-0">Tentang {{ Custom::getShopData('name') }}</h2>
+            <hr class="divider my-4" />
+            <div class="row">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-shipping-fast text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Pelayanan Cepat</h3>
+                        <p class="text-muted mb-0">Pelanggan adalah prioritas nomor satu kami.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-gem text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Kualitas Terjaga</h3>
+                        <p class="text-muted mb-0">Produk kami bervariasi dari berbagai merk terkenal dan sudah terjaga
+                            kondisinya.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-shield-alt text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Bergaransi</h3>
+                        <p class="text-muted mb-0">Kami memberikan garansi untuk setiap pemesanan dan perbaikan.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="mt-5">
+                        <i class="fas fa-4x fa-lock text-primary mb-4"></i>
+                        <h3 class="h4 mb-2">Aman dan Terpercaya</h3>
+                        <p class="text-muted mb-0">Web ini sudah terverifikasi dan toko kami sudah bersertifikat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact-->
-    <section class="page-section" id="contact">
+    <section class="page-section bg-primary" id="contact">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
-                    <h2 class="mt-0">{{__('Contact Us')}}</h2>
+                    <h2 class="text-white mt-0">{{__('Contact Us')}}</h2>
                     <hr class="divider my-4" />
-                    <p class="text-muted mb-5">Jam layanan: 8.00 - 17.00 | Tanggal merah dan hari libur nasional libur
+                    <p class="text-white mb-5">Jam layanan: 8.00 - 17.00 | Tanggal merah dan hari libur nasional libur
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
-                    <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                    <a class="d-block"
+                    <i class="fas fa-phone fa-3x mb-3 text-white"></i>
+                    <a class="d-block text-white"
                         href="telp:{{ Custom::getShopData('phone') }}">{{ Custom::getShopData('phone') }}</a>
                 </div>
                 <div class="col-lg-4 mr-auto text-center">
-                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                    <i class="fas fa-envelope fa-3x mb-3 text-white"></i>
                     <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-                    <a class="d-block" href="mailto:electroparadizo@gmail.com">electroparadizo@gmail.com</a>
+                    <a class="d-block text-white" href="mailto:electroparadizo@gmail.com">electroparadizo@gmail.com</a>
                 </div>
             </div>
         </div>
     </section>
     <!-- Footer-->
-    <footer class="bg-light py-5">
+    <footer class="bg-light py-3">
         <div class="container">
             <div class="small text-center text-muted">
                 Copyright &copy;

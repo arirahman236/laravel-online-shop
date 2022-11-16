@@ -18,6 +18,10 @@
     <!- Favicon -->
     <link rel="icon" href="{{asset('images/logo/logo.png')}}">
 
+    <script type="text/javascript"
+    src="https://app.sandbox.midtrans.com/snap/snap.js"
+    data-client-key="SB-Mid-client-HGGrMTVq_2X_AnkS"></script>
+
     @yield('css')
 
   </head>

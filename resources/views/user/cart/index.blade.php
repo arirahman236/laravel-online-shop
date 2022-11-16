@@ -118,11 +118,12 @@
 
                 <div class="row">
                   <div class="col-md-12">
-                      @if (Auth::user()->province_id != null && Auth::user()->city_id != null && Auth::user()->address != null && Auth::user()->subdistrict != null && Auth::user()->postal_code != null)
-                        <a class="btn btn-primary btn-lg py-3 btn-block" href="{{route('checkout.index')}}">{{__('Proceed To Checkout')}}</a>
-                      @else
-                        <a class="btn btn-primary btn-lg py-3 btn-block" href="{{route('profile.address')}}">{{__('Address Settings')}}</a>
-                      @endif
+                      {{-- @if (Auth::user()->province_id != null && Auth::user()->city_id != null && Auth::user()->address != null && Auth::user()->subdistrict != null && Auth::user()->postal_code != null) --}}
+                        <a class="btn btn-primary btn-lg py-3 btn-block" id="pay-button" href="{{route('checkout.index')}}" >{{__('Proceed To Checkout')}}</a>
+                      {{-- @else
+                        <a class="btn btn-primary btn-lg py-3 btn-block" href="{{route('profile.address')}}">{{__('Address Settings')}}</a> --}}
+                      {{-- @endif --}}
+                      {{-- {{route('checkout.index')}} --}}
                   </div>
                 </div>
               </div>
@@ -131,4 +132,16 @@
         </div>
       </div>
     </div>
+    {{-- <script type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="SB-Mid-client-HGGrMTVq_2X_AnkS"></script> --}}
+    {{-- <script type="text/javascript">
+        // For example trigger on button clicked, or any time you need
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function () {
+          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+          window.snap.pay('{{$snap_token}}');
+          // customer will be redirected after completing payment pop-up
+        });
+    </script> --}}
 @endsection

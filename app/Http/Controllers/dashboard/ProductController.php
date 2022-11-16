@@ -73,7 +73,7 @@ class ProductController extends Controller
                 'name'          => 'required|regex:/^[a-zA-Z0-9 .-]*$/u',
                 'description'   => 'required',
                 'category_id'   => 'required|exists:categories,id',
-                'image'         => 'file|image|dimensions:min_width=375,min_height=375,ratio=1/1|max:1024',
+                'image'         => 'file|image',
                 'price'         => 'required|integer',
                 'weight'        => 'required|integer',
                 'quantity'      => 'required|integer'

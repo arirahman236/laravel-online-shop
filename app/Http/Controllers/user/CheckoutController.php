@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 
+use Exception;
+use Midtrans\Snap;
+use Midtrans\Config;
+use Midtrans\Notification;
+
+
 class CheckoutController extends Controller
 {
     public function index()
@@ -124,7 +130,40 @@ class CheckoutController extends Controller
             $product->save();
         }
 
-        return redirect()->route('orders.success', $no_invoice);
+        // return redirect()->route('orders.success', $no_invoice);
+        //konfigurasi ke midtrans
+        Config::$serverKey = "SB-Mid-server-NfvitgkjBBVa2t2Fivtx6f-a";
+        Config::$isProduction = false;
+        Config::$isSanitized = false;
+        Config::$is3ds = true;
+
+        //buat array untuk di push ke midtrans
+        $midtrans = [
+            'transaction_details' => [
+                'order_id' => $no_invoice,
+                'gross_amount' => $total
+            ],
+            'customer_details' => [
+                'first_name' => Auth::user()->name,
+                'email' => Auth::user()->email,
+            ],
+            'enabled_payments' => [
+                'gopay', 'permata_va', 'bank_transfer'
+            ],
+            'vtweb' => [],
+        ];
+
+        try {
+            // Get Snap Payment Page URL
+            $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
+
+            // Redirect to Snap Payment Page
+            return redirect($paymentUrl);
+        }
+        catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
 
     }
 

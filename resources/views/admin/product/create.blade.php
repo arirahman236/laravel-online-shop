@@ -60,6 +60,11 @@
                         <x-jet-input-error for="image"></x-jet-input-error>
                     </div>
                     <div class="form-group">
+                        <label for="image">{{__('Image')}}</label>
+                        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept="image/*" required>
+                        <x-jet-input-error for="image"></x-jet-input-error>
+                    </div>
+                    <div class="form-group">
                       <label for="price">{{__('Price')}}</label>
                       <div class="input-group">
                         <div class="input-group-prepend">

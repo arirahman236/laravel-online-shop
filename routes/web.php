@@ -9,11 +9,13 @@ use App\Http\Controllers\dashboard\ServiceController as AdminServiceController;
 use App\Http\Controllers\dashboard\ShopController;
 use App\Http\Controllers\FileAccessController;
 use App\Http\Controllers\user\AddressController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\user\CartController;
 use App\Http\Controllers\user\CheckoutController;
 use App\Http\Controllers\user\OrderController;
 use App\Http\Controllers\user\PageController;
 use App\Http\Controllers\user\ServiceController;
+use App\Http\Controllers\PaymentGateAwayController;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -32,8 +34,8 @@ use Illuminate\Support\Str;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', [PageController::class, 'index'])->name('index');
+Route::get('/komen', [CommentController::class, 'komen']);//->name('user.product.index');
 Route::get('/product/search', [PageController::class, 'search'])->name('user.products.search');
 Route::get('/product', [PageController::class, 'showAllProduct'])->name('user.products.index');
 Route::get('/category/{category}', [PageController::class, 'showProductCategory'])->name('categories.show');
@@ -50,6 +52,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/cart', [CartController::class, 'store'])->name('carts.store');
     Route::patch('/cart', [CartController::class, 'update'])->name('carts.update');
     Route::get('/cart/{cart}', [CartController::class, 'destroy'])->name('carts.destroy');
+    //Route::get('/cart', [CartController::class, 'gateaway'])->name('carts.gateaway');
+
+    //Route::get('/gateaway', [PaymentGateAwayController::class, 'gateaway'])->name('gateaway');
 
     Route::get('/user/address', [AddressController::class, 'index'])->name('profile.address');
     Route::patch('/user/address', [AddressController::class, 'update'])->name('address.update');

@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
+    <script type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="SB-Mid-client-HGGrMTVq_2X_AnkS"></script>
+
     <title>Laravel</title>
 
     <!-- Fonts -->
@@ -21,6 +27,7 @@
     </style>
 </head>
 <body>
+    <button id="pay-button">Pay!</button>
     <div class="container-fluid fixed-top p-4">
         <div class="col-12">
             <div class="d-flex justify-content-end">
@@ -151,5 +158,15 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        // For example trigger on button clicked, or any time you need
+        var payButton = document.getElementById('pay-button');
+        payButton.addEventListener('click', function () {
+          // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+          window.snap.pay('{{$snap_token}}');
+          // customer will be redirected after completing payment pop-up
+        });
+      </script>
 </body>
 </html>

@@ -27,7 +27,7 @@ class ProductRequest extends FormRequest
             'name'          => 'required|regex:/^[a-zA-Z0-9 .-]*$/u',
             'description'   => 'required',
             'category_id'   => 'required|exists:categories,id',
-            'image'         => 'required|file|image|dimensions:min_width=375,min_height=375,ratio=1/1|max:1024',
+            'image'         => 'required|file|image',
             'price'         => 'required|integer',
             'weight'        => 'required|integer',
             'quantity'      => 'required|integer'
