@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="{{asset('css/user/owl.theme.default.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/user/aos.css')}}">
     <link rel="stylesheet" href="{{asset('css/user/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
     <!- Favicon -->
     <link rel="icon" href="{{asset('images/logo/logo.png')}}">
@@ -45,6 +47,22 @@
 
   <script src="{{asset('js/user/main.js')}}"></script>
 
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- Slick JS -->    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <!-- Our Script -->
+    <script>
+        $(document).ready(function(){
+            $('.slider').slick({
+                autoplay: true,
+                autoplaySpeed: 2500,
+                dots: true
+            });
+        });
+    </script>
   @yield('js')
 
   </body>

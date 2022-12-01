@@ -35,15 +35,23 @@ class ProductController extends Controller
             $image = Image::make($imagePath)->resize(375,375);
             $image->save($imagePath, 90);
         }
+        $filename = $validatedData['image2']->hashName();
+        $imagePath2 = $validatedData['image2']->move('images/products2/', $filename);
+        if(extension_loaded("gd")||extension_loaded("gd2")){
+            $image2 = Image::make($imagePath2)->resize(375,375);
+            $image2->save($imagePath2, 90);
+        }
 
         $product = new Product();
         $product-> name = $validatedData['name'];
         $product->description = $validatedData['description'];
         $product->image = $imagePath;
+        
         $product->price = $validatedData['price'];
         $product->weight = $validatedData['weight'];
         $product->quantity = $validatedData['quantity'];
         $product->category_id = $validatedData['category_id'];
+        $product->image2 = $imagePath2;
 
         if($product->save()){
             return redirect()->route('products.index')->with('status', __('Product :name added successfully', ['name' => $validatedData['name']]));
@@ -74,6 +82,7 @@ class ProductController extends Controller
                 'description'   => 'required',
                 'category_id'   => 'required|exists:categories,id',
                 'image'         => 'file|image',
+                'image2'         => 'file|image',
                 'price'         => 'required|integer',
                 'weight'        => 'required|integer',
                 'quantity'      => 'required|integer'
@@ -100,6 +109,21 @@ class ProductController extends Controller
                     $newImage->save($newImagePath, 90);
                 }
                 $product->image = $newImagePath;
+            }
+
+            if($request->hasFile('image2')){
+                $oldImagePath2 = $product->image;
+                if(File::exists($oldImagePath2)){
+                    File::delete($oldImagePath2);
+                }
+
+                $filename = $validatedData['image2']->hashName();
+                $newImagePath2 = $validatedData['image2']->move('images/products2/', $filename);
+                if(extension_loaded("gd")||extension_loaded("gd2")){
+                    $newImage2 = Image::make($newImagePath2)->resize(375,375);
+                    $newImage2->save($newImagePath2, 90);
+                }
+                $product->image2 = $newImagePath2;
             }
 
             if($product->save()){

@@ -35,7 +35,7 @@ use Illuminate\Support\Str;
 |
 */
 Route::get('/', [PageController::class, 'index'])->name('index');
-Route::get('/komen', [CommentController::class, 'komen']);//->name('user.product.index');
+
 Route::get('/product/search', [PageController::class, 'search'])->name('user.products.search');
 Route::get('/product', [PageController::class, 'showAllProduct'])->name('user.products.index');
 Route::get('/category/{category}', [PageController::class, 'showProductCategory'])->name('categories.show');
@@ -182,3 +182,7 @@ Route::post('/reset-password', function (Request $request) {
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update');
+
+// Route::post('/komen', [App\Http\Controllers\CommentController::class,'komen'] )->name('komens.store');
+Route::post('/komen', [OrderController::class, 'komen'])->name('komens.store');
+Route::post('/rating', [OrderController::class, 'rating'])->name('ratings.store');

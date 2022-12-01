@@ -6,6 +6,8 @@ use App\Http\Controllers\CekResiController;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\OrderDetail;
+use App\Models\Comments;
+use App\Models\Ratings;
 use App\Models\PaymentMethod;
 use DateTime;
 use Illuminate\Http\Request;
@@ -54,6 +56,8 @@ class OrderController extends Controller
     public function show($id)
     {
         $order = Order::where('invoice', $id)->first();
+        $comment = Comments::where('products_id', $id)->get();
+        $rat = Ratings::where('products_id', $id)->orderBy('id', 'DESC')->first();
         if($order!=null && $order->user_id==Auth::user()->id){
             $products = OrderDetail::where('order_id', $order->id)->get();
 
@@ -61,7 +65,7 @@ class OrderController extends Controller
                 $jsonresi = CekResiController::getApiCekResi($order->courier, $order->tracking_number);
 
                 if($jsonresi==null){
-                    return view('user.order.show', ['order'=>$order, 'products'=>$products, 'showresi'=>false]);
+                    return view('user.order.show', ['order'=>$order, 'products'=>$products, 'showresi'=>false, 'komen'=>$comment, 'rating'=>$rat]);
                 }elseif($jsonresi['status'] == 200){
                     $sortedArr = collect($jsonresi['data']['history'])->sortBy('date')->all();
                     $fdate = end($sortedArr);
@@ -71,13 +75,13 @@ class OrderController extends Controller
                     $interval = $dateTime1->diff($dateTime2);
                     $fullinterval = $interval->h.' jam'.$interval->i.' menit';
                     $hours = $interval->format('%h');
-                    return view('user.order.show', ['order'=>$order, 'products'=>$products, 'summarys'=>$jsonresi['data']['summary'], 'details'=>$jsonresi['data']['detail'], 'historys'=>$sortedArr, 'showresi'=>true, 'full'=>$fullinterval]);
+                    return view('user.order.show', ['order'=>$order, 'products'=>$products, 'summarys'=>$jsonresi['data']['summary'], 'details'=>$jsonresi['data']['detail'], 'historys'=>$sortedArr, 'showresi'=>true, 'full'=>$fullinterval, 'komen'=>$comment, 'rating'=>$rat]);
                 }else{
-                    return view('user.order.show', ['order'=>$order, 'products'=>$products, 'showresi'=>false]);
+                    return view('user.order.show', ['order'=>$order, 'products'=>$products, 'showresi'=>false, 'komen'=>$comment, 'rating'=>$rat]);
                 }
             }
 
-            return view('user.order.show', ['order'=>$order, 'products'=>$products, 'showresi'=>false]);
+            return view('user.order.show', ['order'=>$order, 'products'=>$products, 'showresi'=>false, 'komen'=>$comment, 'rating'=>$rat]);
         }
 
         return redirect()->route('orders.index')->with('error', 'Pesanan tidak ditemukan');
@@ -161,4 +165,36 @@ class OrderController extends Controller
 
         return redirect()->route('orders.index', $order)->with('status', 'Konfirmasi pembayaran diterima');
     }
+
+    public function komen(Request $request)
+    {
+        $validateData = $request->validate([
+
+            'products_id'         => 'string', 'max:255',
+            'isikomen'         => 'string', 'max:255',
+            ]);
+
+            $comment = new Comments();
+            $comment->products_id = $validateData['products_id'];
+            $comment->isikomen = $validateData['isikomen'];
+            $comment->save();
+
+            return redirect()->route('orders.index')->with('success', 'Pesanan tidak ditemukan');
+    }
+    public function rating(Request $request)
+    {
+        $validateData = $request->validate([
+
+            'products_id'         => 'string', 'max:255',
+            'rating'         => 'string', 'max:255',
+            ]);
+
+            $comment = new Ratings();
+            $comment->products_id = $validateData['products_id'];
+            $comment->rating = $validateData['rating'];
+            $comment->save();
+
+            return redirect()->route('orders.index')->with('success', 'Pesanan tidak ditemukan');
+    }
+    
 }

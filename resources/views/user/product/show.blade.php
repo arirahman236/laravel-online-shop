@@ -26,8 +26,14 @@
             </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
-            <img src="{{asset($product->image)}}" alt="Image" class="img-fluid">
+          <div class="col-md-6 slider">
+            <div>
+                <img src="{{asset($product->image)}}" alt="Image" class="img-fluid">
+            </div>
+            <div>
+                <img src="{{asset($product->image2)}}" alt="Image" class="img-fluid">
+            </div>
+            
           </div>
           <div class="col-md-6">
             <form action="{{route('carts.store')}}" method="post">

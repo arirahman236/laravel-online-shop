@@ -55,14 +55,14 @@
                       <x-jet-input-error for="category_id"></x-jet-input-error>
                     </div>
                     <div class="form-group">
-                        <label for="image">{{__('Image')}}</label>
+                        <label for="image">{{__('Image')}} 1</label>
                         <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept="image/*" required>
                         <x-jet-input-error for="image"></x-jet-input-error>
                     </div>
                     <div class="form-group">
-                        <label for="image">{{__('Image')}}</label>
-                        <input class="form-control @error('image') is-invalid @enderror" type="file" name="image" id="image" accept="image/*" required>
-                        <x-jet-input-error for="image"></x-jet-input-error>
+                        <label for="image2">{{__('Image')}} 2</label>
+                        <input class="form-control @error('image2') is-invalid @enderror" type="file" name="image2" id="image2" accept="image/*" required>
+                        <x-jet-input-error for="image2"></x-jet-input-error>
                     </div>
                     <div class="form-group">
                       <label for="price">{{__('Price')}}</label>

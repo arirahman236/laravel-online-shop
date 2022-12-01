@@ -26,16 +26,24 @@
                 @forelse ($products as $product)
                     <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                         <div class="block-4 text-center border">
-                            <a href="{{route('products.show', $product->id)}}">
-                                <figure class="block-4-image">
+                            
+                                <figure class="block-4-image slider">
+                                  <div>
+                                  <a href="{{route('products.show', $product->id)}}">
                                     <img src="{{asset($product->image)}}" alt="Image placeholder" class="img-fluid">
+                                  </a>
+                                  </div>
+                                  <div>
+                                  <a href="{{route('products.show', $product->id)}}">
+                                    <img src="{{asset($product->image2)}}" alt="Image placeholder" class="img-fluid">                                  </a>
+                                  </div>
                                 </figure>
                                 <div class="block-4-text p-4">
                                     <h3>{{$product->name}}</h3>
                                     <p class="badge badge-dark mb-0">{{$product->categories->name}}</p>
                                     <p class="text-primary font-weight-bold">@rupiah($product->price)</p>
                                 </div>
-                            </a>
+                            
                         </div>
                     </div>
                 @empty

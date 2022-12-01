@@ -36,7 +36,8 @@
                                 <th scope="col">{{__('Weight')}}</th>
                                 <th scope="col">{{__('Category')}}</th>
                                 <th scope="col">{{__('Quantity')}}</th>
-                                <th scope="col">{{__('Image')}}</th>
+                                <th scope="col">{{__('Image')}} 1</th>
+                                <th scope="col">{{__('Image')}} 2</th>
                                 <th scope="col" class="text-center">{{__('Action')}}</th>
                             </tr>
                         </thead>
@@ -50,6 +51,7 @@
                                     <td>{{$product->category_name}}</td>
                                     <td>{{$product->quantity}}</td>
                                     <td><img class="product-photo" src="{{asset($product->image)}}" alt="" srcset=""></td>
+                                    <td><img class="product-photo" src="{{asset($product->image2)}}" alt="" srcset=""></td>
                                     <td class="text-center">
                                         <div style="display: inline-flex;">
                                             <div class="p-1">

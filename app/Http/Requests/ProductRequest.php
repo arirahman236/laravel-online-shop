@@ -28,6 +28,7 @@ class ProductRequest extends FormRequest
             'description'   => 'required',
             'category_id'   => 'required|exists:categories,id',
             'image'         => 'required|file|image',
+            'image2'         => 'required|file|image',
             'price'         => 'required|integer',
             'weight'        => 'required|integer',
             'quantity'      => 'required|integer'
